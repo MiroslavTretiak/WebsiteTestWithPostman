@@ -1,0 +1,15 @@
+{
+  "name": "websitetestwithpostman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "test-api": "newman run ./WebsiteTesting.postman_collection.json"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "newman": "^6.2.1"
+  }
+}
