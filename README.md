@@ -1,59 +1,61 @@
-#🚀 API Testing with Postman & Newman
-📋 Overview
-This project is focused on testing the Automation Exercise website’s API endpoints using Postman for creating collections and Newman for running the tests from the command line. It ensures various API functionalities like fetching product lists, creating users, and error handling, to verify that the system is functioning correctly.
+# Cypress Testing for Automation Exercise Website
 
-###⚙️ Requirements
-Before getting started, ensure you have the following tools installed:
+## 0. What Are We Testing and What is This About?
 
-Node.js (v12 or higher)
-npm (comes with Node.js)
-Postman (for API collections)
-Newman (for command-line testing)
-###🛠️ Installation
-Follow these steps to install and set up the project:
+This project is designed to test the functionality and behavior of the website [AutomationExercise.com](https://www.automationexercise.com/) using **Cypress** for end-to-end (E2E) testing.
 
-Clone the Repository:
+The goal is to ensure that key user flows on the website work as expected, including:
 
-bash
-Copy code
-git clone https://github.com/yourusername/your-repository-name.git
-cd your-repository-name
-Install Newman Globally: To run the tests via Newman:
+1. Test Case 1: Register User
+2. Test Case 2: Login User with correct email and password
+3. Test Case 3: Login User with incorrect email and password
+4. Test Case 4: Logout User
+5. Test Case 5: Register User with existing email
+6. Test Case 8: Verify All Products and product detail page
+7. Test Case 9: Search Product
+8. Test Case 21: Add review on product
 
-bash
-Copy code
-npm install -g newman
-Install Local Dependencies: Run the following to install project dependencies:
+## 1. Requirements
 
-bash
-Copy code
-npm install
-###🚀 How to Run Tests
-Once everything is installed, you can run the tests to validate the API endpoints.
+To run Cypress tests for this project, you need the following:
 
-Run Tests with Newman:
-bash
-Copy code
-newman run ./postman_collection.json
-Run Tests via NPM Script:
-Alternatively, you can run the tests using the provided npm script:
+- **Node.js** (version 12 or higher)
+- **npm** (for package management)
+- **Cypress** (will be installed via `npm`)
 
-bash
-Copy code
-npm run test-api
-###⚠️ Potential Issues
-Newman Script Execution Issues: If you encounter the error message related to running scripts being disabled, use this command to allow script execution:
+Browser requirements:
+- Google Chrome (default for Cypress)
+- Other supported browsers
 
-bash
-Copy code
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-Refer to about_Execution_Policies for more details.
+## 2. How to Install
 
-Common API Testing Issues:
+Follow these steps to set up the project and install Cypress:
 
-Ensure your request URLs are correctly formatted.
-Double-check for valid response structures and data types.
-Make sure API endpoints are live and accessible.
-For further assistance, refer to Postman Documentation and Newman Documentation.
+1. Clone the Repository:
 
-Enjoy testing your API endpoints! 😎
+git clone <https://github.com/MiroslavTretiak/WebTestCypress>
+cd <repository-folder>
+
+2. Install Dependencies: Make sure you have Node.js and npm installed, then run:
+
+npm install -y
+
+## 3. How to Run Tests
+
+After installation, you can run the Cypress tests by following these steps:
+
+1. Open Cypress Test Runner: You can open Cypress Test Runner by running the following command:
+
+npx cypress open 
+or add script in .json and run:
+npm run (script name)
+
+4. Any Issues with Tests or Website?
+
+If you encounter any issues while running the tests or if there are problems with the website itself, consider the following:
+
+1. Check Cypress Documentation: Refer to the Cypress Documentation for detailed information about commands, assertions, and best practices.
+2. Ensure Correct Setup: Make sure Node.js and npm are properly installed and that you've followed the installation steps correctly.
+3. Browser Compatibility: If issues arise in a specific browser, try running tests in a different supported browser.
+4. Report Issues: If you find bugs related to the website or the tests, consider reporting them for further investigation.
+ 
