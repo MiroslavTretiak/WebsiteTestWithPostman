@@ -16,6 +16,12 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response has 'products' property\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"products\");\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript",
@@ -60,12 +66,18 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 405\", function () {\r",
-							"    pm.response.to.have.status(405);\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.test(\"Correct response message\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.message).to.eql(\"This request method is not supported.\");\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response is an object\", () => {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Correct response message\", () => {\r",
+							"    pm.expect(pm.response.json().message).to.eql(\"This request method is not supported.\");\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -107,10 +119,27 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// Check that the object has a 'brands' property\r",
+							"pm.test(\"Response has 'brands' property\", () => {\r",
+							"    pm.expect(jsonData).to.have.property(\"brands\");\r",
 							"});\r",
-							""
+							"\r",
+							"// Check that 'brands' is an array\r",
+							"pm.test(\"'brands' is an array\", () => {\r",
+							"    pm.expect(jsonData.brands).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each brand has expected properties\", function () {\r",
+							"    jsonData.brands.forEach(function(brand) {\r",
+							"        pm.expect(brand).to.have.all.keys('id', 'brand'); // Adjust keys based on actual response\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -124,14 +153,8 @@
 				"method": "GET",
 				"header": [],
 				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "search_product: jean",
-							"value": "",
-							"type": "text"
-						}
-					]
+					"mode": "raw",
+					"raw": ""
 				},
 				"url": {
 					"raw": "https://automationexercise.com/api/brandsList",
@@ -157,6 +180,23 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// Check that the response body is an object\r",
+							"pm.test(\"Response is an object\", function () {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"});\r",
+							"\r",
+							"// Check that the object has a 'products' property\r",
+							"pm.test(\"Response has 'products' property\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"products\");\r",
+							"});\r",
+							"\r",
+							"// Check that 'products' is an array\r",
+							"pm.test(\"'products' is an array\", function () {\r",
+							"    pm.expect(jsonData.products).to.be.an(\"array\");\r",
 							"});\r",
 							""
 						],
@@ -200,11 +240,24 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status Code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Status Code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response Message: User created!\", function () {\r",
+							"const jsonData = pm.response.json();\r",
+							"\r",
+							"// Check that the response body is an object\r",
+							"pm.test(\"Response is an object\",  () => {\r",
+							"    pm.expect(jsonData).to.be.an(\"object\");\r",
+							"});\r",
+							"\r",
+							"// Check that the response body has a 'message' property\r",
+							"pm.test(\"Response has 'message' property\", () => {\r",
+							"    pm.expect(jsonData).to.have.property(\"message\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response Message: User created!\", () => {\r",
 							"    let jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"User created!\");\r",
 							"});"
@@ -329,11 +382,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Status code is 200\",  () => {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response Message: User updated!\", function () {\r",
+							"pm.test(\"Response Message: User updated!\", () => {\r",
 							"    let jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"User updated!\");\r",
 							"});"
@@ -356,12 +409,12 @@
 						},
 						{
 							"key": "email",
-							"value": "keksTest@test.com",
+							"value": "kaizerTest@test.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "654321",
+							"value": "123456",
 							"type": "text"
 						},
 						{
@@ -458,11 +511,11 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.test(\"Status code is 200\", () => {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.test(\"Response Message: Account deleted!\", function () {\r",
+							"pm.test(\"Response Message: Account deleted!\", () => {\r",
 							"    let jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.message).to.eql(\"Account deleted!\");\r",
 							"});"
@@ -475,6 +528,21 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "kaizerTest@test.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "https://automationexercise.com/api/deleteAccount",
 					"protocol": "https",
