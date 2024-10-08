@@ -27,4 +27,4 @@ jobs:
 
     - name: Run API Tests
       run: |
-        newman run path/to/your/collection.json  # specify the path to your collection
+        newman run ./WebsiteTesting.postman_collection.json
