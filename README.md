@@ -1,60 +1,65 @@
-API Testing with Postman and Newman
-What are we testing and what is this about?
-This project focuses on automated testing of various API endpoints for the Automation Exercise website using Postman and Newman. The aim is to validate the functionality, reliability, and performance of the API services provided by the website. By creating automated tests, we can ensure that the API endpoints return the expected results and handle requests appropriately, providing confidence in the overall quality of the application.
+# Automation Exercise API Testing
 
-Requirements
-Before getting started, ensure you have the following installed on your system:
+## 0. What Are We Testing and What Is This About?
 
-Node.js (version 12 or higher)
-npm (Node Package Manager)
-Newman (installed globally)
-How to Install
-Clone the Repository: Open your terminal and run the following command to clone this repository:
+This project is focused on testing the **Automation Exercise API** (https://www.automationexercise.com), which provides access to product and brand data, as well as user account management functionalities. The goal is to ensure that the API endpoints function correctly and return the expected responses. The tests cover various operations, including retrieving products and brands, adding new products, and managing user accounts.
 
-bash
-Copy code
-git clone <repository-url>
-cd <repository-folder>
-Install Dependencies: Make sure you have Node.js and npm installed, then run:
+## 1. Requirements
 
-bash
-Copy code
+Before running the tests, ensure that you have the following installed on your machine:
+
+- **Node.js** (version 12 or later)
+- **Postman** (for manual testing)
+- **Newman** (for automated testing via the command line)
+
+You can install Newman globally using npm:
+```
+npm install -g newman
+```
+
+## 2. How to Install
+### 1. Clone the Repository: Open your terminal and run the following command to clone the repository:
+
+```
+git clone https://github.com/MiroslavTretiak/WebsiteTestWithPostman
+```
+### 2. Navigate to the Project Directory:
+
+```
+cd your-repo-name
+```
+
+### 3. Install Dependencies (if applicable): If the project has additional dependencies, make sure to install them:
+
+```
 npm install
-This will install all the required packages for the project.
+```
 
-How to Run Tests
-You can run the API tests using the following command in your terminal:
+## 3. How to Run Tests
 
-bash
-Copy code
-npm run test-api
-This command will execute the tests defined in the Postman collection, verifying each endpoint’s response and status.
+### Using Postman
 
-Running Tests with Newman
-To run tests directly with Newman, use the following command:
+#### 1. Open Postman.
+#### 2. Import the Collection:
+Go to the "Collections" tab and click on "Import".
+Upload the Postman collection JSON file provided in the repository.
 
-bash
-Copy code
-newman run <path-to-collection.json>
-Example Command
-For this project, you can use:
+#### 3. Run the Tests:
+Click on the collection and select the requests you want to test.
+Click "Send" to execute each request.
 
-bash
-Copy code
-newman run websitetestwithpostman/postman_collection.json
-Any Issues with Tests or Website?
-If you encounter any issues while running the tests, consider the following:
+### Using Newman
+To run tests with Newman, use the following command in your terminal:
 
-Check Network Connectivity: Ensure you have a stable internet connection, as these tests interact with external APIs.
+```
+newman run path/to/your/collection.json
+```
+Replace path/to/your/collection.json with the actual path to your Postman collection file.
 
-Execution Policies: If you encounter issues with running Newman in PowerShell, you may need to change your execution policy. Use the following command:
 
-powershell
-Copy code
-Set-ExecutionPolicy RemoteSigned
-API Response Changes: The API responses may change over time. If a test fails, verify the current API response against the expected outcome and adjust your tests accordingly.
+## 4. Any Issues with Tests or Website?
+If you encounter any issues while running the tests or if there are problems with the Automation Exercise website, please follow these steps:
 
-Open Issues: Feel free to open issues in the repository for any bugs or suggestions for improvements related to the tests or the API functionality.
-
-Conclusion
-This project provides a robust framework for testing the API endpoints of the Automation Exercise website. By using Postman and Newman, developers can efficiently automate and manage API tests, ensuring quality and reliability.
+Check the API Documentation: Make sure you are using the correct endpoints and request formats as specified in the Automation Exercise API Documentation.
+Review Error Messages: Take note of any error messages returned by the API and refer to the documentation for troubleshooting.
+Raise an Issue: If the problem persists, please open an issue on the project's GitHub repository with detailed information about the error and steps to reproduce it.
