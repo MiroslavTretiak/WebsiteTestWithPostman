@@ -1,65 +1,54 @@
-# Automation Exercise API Testing
+Automation Exercise API Tests
+This repository contains a collection of automated tests for various API endpoints provided by AutomationExercise. The goal of these tests is to validate the functionality and ensure the API responds as expected under various conditions.
 
-## 0. What Are We Testing and What Is This About?
+0. What Are We Testing?
+We are testing multiple API endpoints for AutomationExercise to ensure they behave correctly. The focus is on testing different methods (GET, POST, PUT, DELETE) for various resources, ensuring correct responses, and verifying data structures.
 
-This project is focused on testing the **Automation Exercise API** (https://www.automationexercise.com), which provides access to product and brand data, as well as user account management functionalities. The goal is to ensure that the API endpoints function correctly and return the expected responses. The tests cover various operations, including retrieving products and brands, adding new products, and managing user accounts.
+1. Requirements
+Before you begin, ensure you have the following installed on your system:
 
-## 1. Requirements
-
-Before running the tests, ensure that you have the following installed on your machine:
-
-- **Node.js** (version 12 or later)
-- **Postman** (for manual testing)
-- **Newman** (for automated testing via the command line)
-
-You can install Newman globally using npm:
-```
+Node.js (v12 or later) Install Node.js
+Newman (Postman CLI)
+Install Newman globally by running the following command:
+bash
+Copy code
 npm install -g newman
-```
+2. How to Install
+Clone the Repository:
 
-## 2. How to Install
-### 1. Clone the Repository: Open your terminal and run the following command to clone the repository:
+bash
+Copy code
+git clone https://github.com/yourusername/repository-name.git
+cd repository-name
+Install dependencies:
 
-```
-git clone https://github.com/MiroslavTretiak/WebsiteTestWithPostman
-```
-### 2. Navigate to the Project Directory:
-
-```
-cd your-repo-name
-```
-
-### 3. Install Dependencies (if applicable): If the project has additional dependencies, make sure to install them:
-
-```
+bash
+Copy code
 npm install
-```
+3. How to Run Tests
+To run the API tests using Newman, follow these steps:
 
-## 3. How to Run Tests
+Run All Tests:
 
-### Using Postman
+You can execute the Postman collection tests through Newman with the following command:
 
-#### 1. Open Postman.
-#### 2. Import the Collection:
-Go to the "Collections" tab and click on "Import".
-Upload the Postman collection JSON file provided in the repository.
+bash
+Copy code
+npm run test-api
+This will execute all the test cases from the Postman collection file located in the postman_collection.json.
 
-#### 3. Run the Tests:
-Click on the collection and select the requests you want to test.
-Click "Send" to execute each request.
+Test Execution:
 
-### Using Newman
-To run tests with Newman, use the following command in your terminal:
+Each test case verifies:
 
-```
-newman run path/to/your/collection.json
-```
-Replace path/to/your/collection.json with the actual path to your Postman collection file.
+Correct status codes (200, 201, 405, etc.).
+Expected response body structure.
+Specific API functionalities like creating, updating, or deleting user accounts.
+4. Any Issues With Tests or Website?
+Changing Data: Some tests might be sensitive to changes in the database. For example, while creating or deleting accounts, ensure that email addresses or user IDs are unique to avoid conflicts.
 
+Request Timeouts: Depending on server performance, some requests might take longer to process. You can adjust timeout limits in Postman settings.
 
-## 4. Any Issues with Tests or Website?
-If you encounter any issues while running the tests or if there are problems with the Automation Exercise website, please follow these steps:
+Dynamic Data: Tests that rely on unique or changing data (like creating a new user) should be re-run or handled with unique input parameters to avoid duplication errors.
 
-Check the API Documentation: Make sure you are using the correct endpoints and request formats as specified in the Automation Exercise API Documentation.
-Review Error Messages: Take note of any error messages returned by the API and refer to the documentation for troubleshooting.
-Raise an Issue: If the problem persists, please open an issue on the project's GitHub repository with detailed information about the error and steps to reproduce it.
+Feel free to fork this repository and adjust the tests according to your needs. If you encounter any issues, please report them in the Issues tab!
